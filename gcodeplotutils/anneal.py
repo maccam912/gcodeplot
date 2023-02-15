@@ -11,7 +11,8 @@ def measure(lines, reversals, index):
         return 0.
     z1 = lines[index][0] if reversals[index] else lines[index][-1]
     z2 = lines[index+1][-1] if reversals[index+1] else lines[index+1][0]
-    return distance(z1,z2)
+    hop_cost = height*100 if z1 != z2 else 0
+    return distance(z1,z2) + hop_cost
         
 def energy(lines, reversals):
     return sum(measure(lines, reversals, i) for i in range(len(lines)-1))
